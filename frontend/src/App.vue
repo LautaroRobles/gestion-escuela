@@ -2,12 +2,21 @@
   <v-app>
     <v-app-bar
       app
+      color="primary"
+      dark
     >
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
-      <v-toolbar-title>Alumnos</v-toolbar-title>
+      <v-btn text to="/">
+        <span>Inicio</span>
+      </v-btn>
+      <v-btn text to="/about">
+        <span>About</span>
+      </v-btn>
     </v-app-bar>
 
     <v-main>
+      <v-expand-transition>
+        <router-view/>
+      </v-expand-transition>
     </v-main>
   </v-app>
 </template>
@@ -19,6 +28,6 @@ export default {
 
   data: () => ({
     //
-  })
+  }),
 };
 </script>
