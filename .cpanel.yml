@@ -2,5 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/conlatos/public_html/
-    - /home/conlatos/repositories/gestion-escuela/frontend/dist -R * $DEPLOYPATH
-    - /home/conlatos/repositories/gestion-escuela/backend -R * $DEPLOYPATH
+    - /bin/cp -r /frontend/dist/ $DEPLOYPATH
