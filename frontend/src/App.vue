@@ -1,33 +1,20 @@
 <template>
-  <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <v-btn text to="/">
-        <span>Inicio</span>
-      </v-btn>
-      <v-btn text to="/about">
-        <span>About</span>
-      </v-btn>
-    </v-app-bar>
-
-    <v-main>
-      <v-expand-transition>
-        <router-view/>
-      </v-expand-transition>
-    </v-main>
-  </v-app>
+    <v-app>
+		<Navigation/>
+        <v-main>
+            <v-fade-transition mode="out-in">
+                <router-view/>
+            </v-fade-transition>
+        </v-main>
+    </v-app>
 </template>
 
 <script>
-
+import Navigation from './components/Navigation.vue'
 export default {
-  name: 'App',
-
-  data: () => ({
-    //
-  }),
+	name: 'App',
+	components: {
+		Navigation: Navigation
+	}
 };
 </script>
