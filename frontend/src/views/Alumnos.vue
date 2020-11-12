@@ -12,7 +12,7 @@
 							width="100hw"
 							v-model="drawer"
 						>
-							<v-subheader>Acciones</v-subheader>
+							<v-subheader>Acciones de Alumnos</v-subheader>
 							<v-divider></v-divider>
 							<v-list dense>
 								<v-list-item-group>
