@@ -1,13 +1,14 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/controllers/alumnos.php';
 
 $klein = new \Klein\Klein();
+$alumnos = new Alumnos();
 
-$klein->respond('GET', '/hello', function () {
-    return 'Hello World!';
-});
-$klein->respond(function () {
-    return 'All the things';
+$klein->respond('GET', '/api/alumnos', function() use ($alumnos) {return $alumnos->listadoAlumnos();});
+
+$klein->respond(function ($request, $response, $service) {
+    $service->layout('index.html');
 });
 
 $klein->dispatch();
