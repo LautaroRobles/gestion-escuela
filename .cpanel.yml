@@ -2,4 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/conlatos/public_html/
-    - /frontend -R dist $DEPLOYPATH
+    - /frontend/dist -R * $DEPLOYPATH
