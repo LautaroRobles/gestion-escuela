@@ -6,9 +6,9 @@ $klein = new \Klein\Klein();
 $alumnos = new Alumnos();
 
 $klein->respond('GET', '/api/alumnos', function() use ($alumnos) {return $alumnos->listadoAlumnos();});
-
-$klein->respond(function ($request, $response, $service) {
-    $service->layout('index.html');
+$klein->respond('*', function ($request, $response, $service) { 
+    $service->render('index.html'); 
+    return "xd";
 });
 
 $klein->dispatch();
