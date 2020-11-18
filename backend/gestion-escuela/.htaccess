@@ -1,7 +1,4 @@
-<IfModule mod_rewrite.c>
-    Options -MultiViews
-
-    RewriteEngine On
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^(.*)$ /gestion-escuela/index.php?u=$1 [NC,QSA]
-</IfModule>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ ./index.php [L]
