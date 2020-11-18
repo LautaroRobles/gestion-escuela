@@ -73,6 +73,6 @@ export default {
 			}
 			return "position: relative";
 		}
-	}
+	},
 }
 </script>
