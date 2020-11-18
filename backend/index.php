@@ -7,7 +7,8 @@ $alumnos = new Alumnos();
 
 $klein->respond('GET', '/api/alumnos', function() use ($alumnos) {return $alumnos->listadoAlumnos();});
 $klein->respond('*', function ($request, $response, $service) { 
-    $service->render('dist/index.html'); 
+    if(file_exists("index.html"))
+        $service->render('index.html'); 
     return "xd";
 });
 
