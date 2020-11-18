@@ -12,7 +12,7 @@ export default {
 		}
 	},
 	mounted() {
-		this.$http.get('/api/alumnos').then((response) => {
+		this.$http.get('/gestion-escuela/api/alumnos').then((response) => {
 			this.info = response.data;
 		})
 	}
