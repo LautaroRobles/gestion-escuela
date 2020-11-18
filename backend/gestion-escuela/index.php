@@ -17,10 +17,15 @@ $request->server()->set('REQUEST_URI', substr($uri, strlen(APP_PATH)));
 $alumnos = new Alumnos();
 
 $klein->respond('GET', '/api/alumnos', function() use ($alumnos) {return $alumnos->listadoAlumnos();});
-$klein->respond(function ($request, $response, $service) {
-    if(file_exists("index.html"))
-        $service->render('index.html');
-    return "tried";
+
+$klein->respond(function($request, $response, $service, $app, $klein, $matched) {
+    if (count($matched->all()) > 0) {
+        // We must have matched a route earlier so do nothing
+    } else {
+        // I guess we didn't match anything earlier, let's go home..., do what you like
+        if(file_exists("index.html"))
+            $service->render('index.html');
+    }
 });
 
 $klein->dispatch($request);
