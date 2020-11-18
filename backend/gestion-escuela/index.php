@@ -20,6 +20,7 @@ $klein->respond('GET', '/api/alumnos', function() use ($alumnos) {return $alumno
 $klein->respond(function ($request, $response, $service) {
     if(file_exists("index.html"))
         $service->render('index.html');
+    return "tried";
 });
 
 $klein->dispatch($request);
