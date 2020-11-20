@@ -39,12 +39,8 @@
 						class="overflow-hidden"
 						min-height="70vh"
 					>
-						<v-toolbar dense dark prominent color="purple">
-							<v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-							<v-toolbar-title>{{$route.name}}</v-toolbar-title>
-						</v-toolbar>
 						<v-fade-transition mode="out-in">
-							<router-view></router-view>
+							<router-view :toggleDrawer="toggleDrawer"></router-view>
 						</v-fade-transition>
 					</v-card>
 				</v-col>
@@ -64,6 +60,11 @@ export default {
 				{text: 'Sacar Alumno', icon: 'mdi-minus', to: '/alumnos/eliminar'}
 			],
 			drawer: null
+		}
+	},
+	methods: {
+		toggleDrawer() {
+			this.drawer = !this.drawer;
 		}
 	},
 	computed: {

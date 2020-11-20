@@ -1,6 +1,6 @@
 <?php
     class Alumnos {
-        public function listadoAlumnos() {
+        public function listadoAlumnos($some) {
             return "ALUMNOSSSSS";
         }
     }
