@@ -13,7 +13,7 @@ $uri = $request->server()->get('REQUEST_URI');
 // Set the request URI to a modified one (without the "subdirectory") in it
 $request->server()->set('REQUEST_URI', substr($uri, strlen(APP_PATH)));
 
-$klein->respond('GET', '/api/alumnos', (fn() => call_user_func(array('Alumnos', 'listadoAlumnos'))));
+//$klein->respond('GET', '/api/alumnos', (fn() => call_user_func(array('Alumnos', 'listadoAlumnos'))));
 
 $klein->respond(function($request, $response, $service, $app, $klein, $matched) {
     if (count($matched->all()) > 0) {
