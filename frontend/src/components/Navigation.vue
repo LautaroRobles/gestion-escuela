@@ -36,11 +36,47 @@
 	
 		<v-app-bar
 			app
-			color="deep-purple"
 			dark
+			:color="color"
+			shrink-on-scroll
+			fade-img-on-scroll
+			src="@/assets/escuela/appbar.png"
 		>
+			<template v-slot:img="{ props }">
+				<v-img
+					v-bind="props"
+					:gradient="gradient"
+				></v-img>
+			</template>
 			<v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 			<v-toolbar-title>{{appbarName}}</v-toolbar-title>
+
+			<v-spacer></v-spacer>
+
+			<v-menu bottom left :close-on-content-click="false">
+				<template v-slot:activator="{ on, attrs }">
+					<v-btn
+						icon
+						v-bind="attrs"
+						v-on="on"
+					>
+						<v-icon>mdi-dots-vertical</v-icon>
+					</v-btn>
+				</template>
+
+				<v-card>
+					<v-card-title primary-title>
+						Opciones
+					</v-card-title>
+					<v-card-text>
+						<v-switch
+							inset
+							v-model="$vuetify.theme.dark"
+							label="Modo Oscuro"
+						></v-switch>
+					</v-card-text>
+				</v-card>
+			</v-menu>
 		</v-app-bar>
 	</div>
 </template>
@@ -63,6 +99,20 @@ export default {
 				return this.$route.matched[0].name;
 			}
 			return this.$route.name;
+		},
+		gradient() {
+			if(this.$vuetify.theme.dark) {
+				return "to top right, #004D40, #004D4099";
+			} else {
+				return "to top right, #009688, #004D4099";
+			}
+		},
+		color() {
+			if(this.$vuetify.theme.dark) {
+				return "teal darken-2";
+			} else {
+				return "teal";
+			}
 		}
 	}
 }

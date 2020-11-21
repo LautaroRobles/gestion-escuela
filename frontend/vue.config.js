@@ -9,6 +9,8 @@ module.exports = {
                 target: 'http://localhost:80',
                 changeOrigin: true
 			}
-		}
+		},
+        disableHostCheck: true,
+        port: 9000
 	}
 }

@@ -17,13 +17,29 @@ const routes = [
 		children: [
 			{
 				path: 'listado',
-				name: 'Listado',
+				name: 'Listado Alumnos',
 				component: () => import('@/views/Alumnos/Listado') 
 			},
 			{
-				path: 'entradossalidos',
-				name: 'Entrados y Salidos',
-				component: () => import('@/views/Alumnos/EntradosSalidos') 
+				path: 'utiles',
+				name: 'Datos Utiles',
+				component: () => import('@/views/Alumnos/DatosUtiles'),
+				children: [
+					{
+						path: '',
+						redirect: 'sae'	
+					},
+					{
+						path: 'sae',
+						name: 'Bolson SAE',
+						component: () => import('@/views/Alumnos/DatosUtiles/BolsonSAE')
+					},
+					{
+						path: 'abc',
+						name: 'Datos ABC',
+						component: () => import('@/views/Alumnos/DatosUtiles/ABC')
+					}
+				]
 			}
 		]
 	}
