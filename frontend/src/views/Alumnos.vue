@@ -28,6 +28,17 @@
 										</v-list-item-content>
 									</v-list-item>
 								</template>
+								<v-list-item
+									href="https://conlatoso.com/alumno-regular"
+									targer="_blank"
+								>
+									<v-list-item-icon>
+										<v-icon v-text="'mdi-account-box'"></v-icon>
+									</v-list-item-icon>
+									<v-list-item-content>
+										<v-list-item-title v-text="'Constancias de Alumno Regular'"></v-list-item-title>
+									</v-list-item-content>
+								</v-list-item>
 							</v-list-item-group>
 						</v-list>
 					</v-navigation-drawer>
