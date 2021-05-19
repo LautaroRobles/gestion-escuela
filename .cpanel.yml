@@ -1,6 +1,0 @@
----
-deployment:
-  tasks:
-    - export DEPLOYPATH=/home/conlatos/public_html/gestion-escuela
-    - /bin/cp -r frontend/dist/* $DEPLOYPATH
-    - /bin/cp -r backend/gestion-escuela/* $DEPLOYPATH
