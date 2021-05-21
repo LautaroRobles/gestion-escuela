@@ -7,8 +7,9 @@ $router = new \Bramus\Router\Router();
 
 // Define routes
 $router->setNamespace('\App\Controllers');
-$router->get('/about', 'AlumnosController@getAllAlumnos');
-$router->get('/', function() {
+$router->get('/alumnos', 'AlumnosController@getAllAlumnos');
+
+$router->get('/*', function() {
     echo 'About Page Contents';
 });
 

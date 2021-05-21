@@ -1,17 +1,14 @@
 <?php
 namespace App\Controllers;
 
+use App\Entities\Alumno;
+
 class AlumnosController {
-    var $edible;
-    var $color;
-
-    function __construct()
-    {
-    }
-
     public static function getAllAlumnos() {
-        echo 'op';
-        return "asd";
+        $alumno = new Alumno();
+        $alumno->setApellido("holis");
+
+        echo $alumno->getApellido();
     }
 }
 ?>
