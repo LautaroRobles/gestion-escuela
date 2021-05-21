@@ -11,6 +11,7 @@ composer.phar
 # composer.lock
 
 ### NetBeans ###
+/nbproject/
 **/nbproject/private/
 **/nbproject/Makefile-*.mk
 **/nbproject/Package-*.bash
