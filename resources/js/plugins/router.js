@@ -3,8 +3,9 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-import Hello from '../views/Hello'
-import Home from '../views/Home'
+import Navigation from '@/components/NavAppBar'
+import Home from '@/views/Home'
+import Login from '@/views/Login'
 
 const router = new VueRouter({
     mode: 'history',
@@ -12,13 +13,18 @@ const router = new VueRouter({
         {
             path: '/',
             name: 'home',
-            component: Home
+            components: {
+                view: Home,
+                navigation: Navigation
+            }
         },
         {
-            path: '/hello',
-            name: 'hello',
-            component: Hello,
-        },
+            path: '/login',
+            name: 'login',
+            components: {
+                view: Login
+            }
+        }
     ],
 });
 

@@ -1,7 +1,7 @@
 <template>
-  <div>
-      home
-  </div>
+    <v-container fluid>
+        inicio inicial
+    </v-container>
 </template>
 
 <script>

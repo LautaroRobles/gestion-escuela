@@ -1,35 +1,24 @@
 <template>
-  <v-app>
-    <v-navigation-drawer app>
-      <!-- -->
-    </v-navigation-drawer>
+    <v-app>
+        <router-view name="navigation"></router-view>
 
-    <v-app-bar app>
-      <!-- -->
-    </v-app-bar>
+        <!-- Sizes your content based upon application components -->
+        <v-main>
+            <!-- Provides the application the proper gutter -->
+            <router-view name="view"></router-view>
+        </v-main>
 
-    <!-- Sizes your content based upon application components -->
-    <v-main>
-
-      <!-- Provides the application the proper gutter -->
-      <v-container fluid>
-
-        <!-- If using vue-router -->
-        <router-view></router-view>
-      </v-container>
-    </v-main>
-
-    <v-footer app>
-      <!-- -->
-    </v-footer>
-  </v-app>
+        <v-footer app>
+            <!-- -->
+        </v-footer>
+    </v-app>
 </template>
 
 <script>
 export default {
-  mounted() {
-    console.log("hola");
-  }
+    mounted() {
+        console.log(this.$route);
+    }
 }
 </script>
 

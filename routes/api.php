@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AlumnoController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::middleware('auth:sanctum')->group(
+    function () {
+        Route::get('/alumnos', [AlumnoController::class, 'index']);
+        Route::post('/alumnos', [AlumnoController::class, 'store']);
 
-Route::get('/alumnos', [AlumnoController::class, 'showAll']);
-Route::post('/alumnos', [AlumnoController::class, 'store']);
+        Route::post('/registrar', [AuthController::class, 'register']);
+    }
+);
+
+Route::post('/login', [AuthController::class, 'login']);
