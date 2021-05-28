@@ -16,12 +16,12 @@ class CreateEstablecimientosTable extends Migration
         Schema::create('establecimientos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('direccion');
-            $table->string('telefono');
-            $table->string('mail');
-            $table->enum('tipo_jornada', ['Simple', 'Extendida', 'Doble']);
-            $table->string('cue');
-            $table->string('nivel');
+            $table->string('direccion')->default('');
+            $table->string('telefono')->default('');
+            $table->string('mail')->default('');
+            $table->enum('tipo_jornada', ['Simple', 'Extendida', 'Doble'])->default('Simple');
+            $table->string('cue')->default('');
+            $table->string('nivel')->default('');
             $table->timestamps();
         });
     }

@@ -1,9 +1,9 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Escuela;
 
-use App\Models\Curso;
-use App\Models\Establecimiento;
+use App\Models\Escuela\Curso;
+use App\Models\Escuela\Establecimiento;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CursoFactory extends Factory

@@ -2,11 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\Alumno;
-use App\Models\Curso;
-use App\Models\Establecimiento;
-use App\Models\User;
-use GuzzleHttp\Promise\Create;
+use App\Models\Escuela\Alumno\Alumno;
+use App\Models\Escuela\Alumno\ResponsableLegal;
+use App\Models\Escuela\Alumno\Telefono;
+use App\Models\Escuela\Curso;
+use App\Models\Escuela\Establecimiento;
+use App\Models\Security\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,31 +18,41 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {      
+    {
         $ep23 = Establecimiento::factory()->create([
             'nombre' => 'EP N°23 "RICARDO GÜIRALDES"'
         ]);
 
-        Alumno::factory()->count(21)->create([
-            'curso_id' => Curso::factory()->create([
+        Alumno::factory()->count(21)
+            ->has(Telefono::factory())
+            ->has(ResponsableLegal::factory())
+            ->create([
+            'curso_id' => Curso::factory()
+                ->create([
                 'establecimiento_id' => $ep23->id
             ])
         ]);
 
-        Alumno::factory()->count(23)->create([
-            'curso_id' => Curso::factory()->create([
+        Alumno::factory()->count(23)
+            ->has(Telefono::factory())
+            ->has(ResponsableLegal::factory())
+            ->create([
+            'curso_id' => Curso::factory()
+                ->create([
                 'establecimiento_id' => $ep23->id
             ])
         ]);
 
         User::factory()->create([
             'username' => 'andrea',
-            'password' => 'gestionescuela'
+            'password' => bcrypt('gestionescuela'),
+            'establecimiento_id' => $ep23->id
         ]);
 
         User::factory()->create([
             'username' => 'lautaro',
-            'password' => 'gestionescuela'
+            'password' => bcrypt('gestionescuela'),
+            'establecimiento_id' => $ep23->id
         ]);
     }
 }

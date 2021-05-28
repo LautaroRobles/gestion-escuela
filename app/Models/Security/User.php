@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Security;
 
+use App\Models\Escuela\Establecimiento;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -30,4 +31,9 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function establecimiento()
+    {
+        return $this->belongsTo(Establecimiento::class);
+    }
 }

@@ -16,38 +16,43 @@
                             Iniciar sesión
                         </v-toolbar-title>
                     </v-toolbar>
-                    <v-card-text>
-                        <v-text-field
-                            label="Nombre de usuario"
-                            v-model="username"
-                        ></v-text-field>
-                        <v-text-field
-                            label="Contraseña"
-                            :type="showPassword ? 'text' : 'password'"
-                            v-model="password"
-                        >
-                            <v-btn icon
-                                slot="append"
-                                @click="showPassword = !showPassword"
-                            ><v-icon>{{showPassword ? 'mdi-eye' : 'mdi-eye-off'}}</v-icon></v-btn>
-                        </v-text-field>
-                    </v-card-text>
-                    <v-divider></v-divider>
-                    <v-card-actions>
-                        <v-spacer></v-spacer>
-                        <v-btn
-                            color="primary"
-                            @click="login"
-                        >
-                            Continuar
-                            <v-icon
-                                right
+                    <v-form ref="login_form">
+                        <v-card-text>
+                            <v-text-field
+                                label="Nombre de usuario"
+                                v-model="username"
+                                :rules="rules_username"
+                            ></v-text-field>
+                            <v-text-field
+                                label="Contraseña"
+                                :type="showPassword ? 'text' : 'password'"
+                                :rules="rules_password"
+                                v-model="password"
                             >
-                                mdi-arrow-right
-                            </v-icon>
-                        </v-btn>
-                    </v-card-actions>
-                    
+                                <v-btn icon
+                                       slot="append"
+                                       @click="showPassword = !showPassword"
+                                ><v-icon>{{showPassword ? 'mdi-eye' : 'mdi-eye-off'}}</v-icon></v-btn>
+                            </v-text-field>
+                        </v-card-text>
+                        <v-divider></v-divider>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn
+                                type="submit"
+                                color="primary"
+                                @click.prevent="login"
+                            >
+                                Continuar
+                                <v-icon
+                                    right
+                                >
+                                    mdi-arrow-right
+                                </v-icon>
+                            </v-btn>
+                        </v-card-actions>
+                    </v-form>
+
                     <v-snackbar
                         v-model="alert.show"
                         :timeout="5000"
@@ -57,7 +62,8 @@
                     >
                         {{alert.text}}
                     </v-snackbar>
-                    <v-overlay 
+
+                    <v-overlay
                         :value="loading"
                         absolute
                     >
@@ -88,12 +94,25 @@ export default {
 
             username: null,
             password: null,
+            wrong_credentials: false,
+
+            rules_username: [
+                input => input !== "" || "Escriba su nombre de usuario",
+                () => !this.wrong_credentials
+            ],
+            rules_password: [
+                input => input !== "" || "Escriba su contraseña",
+                () => !this.wrong_credentials || "Usuario y/o contraseña incorrecta"
+            ]
         }
     },
     methods: {
         login() {
             // try login in;
             this.loading = true;
+
+            // reset rules
+            this.wrong_credentials = false;
 
             var request = {
                 url: "/api/login",
@@ -104,11 +123,24 @@ export default {
                 handler: {
                     // OK
                     "200": (response) => {
+                        var data = response.data;
+
+                        var user = response.data.user;
+                        var establecimiento = user.establecimiento;
+
+                        user.token = data.token;
+                        delete user.establecimiento;
+
+                        console.log("User", user);
+                        console.log("Establecimiento", establecimiento);
+
+                        this.$store.commit('user', user);
+                        this.$store.commit('establecimiento', establecimiento);
+
                         this.$router.push({name: "home"});
                     },
                     "401": (response) => {
-                        this.alert.show = true;
-                        this.alert.text = "Usuario y/o contraseña incorrectos";
+                        this.wrong_credentials = true;
                     },
                     default: (response) => {
                         console.log("default thing");
@@ -118,12 +150,14 @@ export default {
                     },
                     always: () => {
                         this.loading = false;
-                        console.log("finished", this.loading);
                     }
                 }
             }
 
             RequestHelper.post(request);
+        },
+        validateForm() {
+            this.$refs.login_form.validate()
         }
     },
     computed: {
@@ -138,9 +172,12 @@ export default {
                 case 'md':
                     return "50%";
                 default:
-                    return "35%"
+                    return "35%";
             }
         }
+    },
+    watch: {
+        wrong_credentials: 'validateForm'
     }
 }
 </script>

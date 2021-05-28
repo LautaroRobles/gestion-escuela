@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Escuela\Establecimiento;
+use App\Models\Security\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -31,7 +32,9 @@ class AuthController extends Controller
         ]);
 
         // Get user from db
-        $user = User::where('username', $fields['username'])->first();
+        $user = User::with('establecimiento')
+            ->where('username', $fields['username'])
+            ->first();
 
         // Check pass
         if(!$user || !Hash::check($fields['password'], $user->password)) {

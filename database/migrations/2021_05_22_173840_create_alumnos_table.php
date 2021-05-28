@@ -16,12 +16,14 @@ class CreateAlumnosTable extends Migration
         Schema::create('alumnos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('curso_id')->constrained();
+            $table->foreignId('dni_id');
             $table->string('apellidos');
             $table->string('nombres');
             $table->enum('sexo', ['F', 'M']);
             $table->date('fecha_de_nacimiento');
-            $table->string('lugar_de_nacimiento');
+            $table->string('lugar_de_nacimiento')->nullable();
             $table->string('nacionalidad');
+            $table->foreignId('domicilio_id');
             $table->timestamps();
         });
     }

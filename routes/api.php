@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\AuthController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\CursoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +20,8 @@ Route::middleware('auth:sanctum')->group(
     function () {
         Route::get('/alumnos', [AlumnoController::class, 'index']);
         Route::post('/alumnos', [AlumnoController::class, 'store']);
+
+        Route::get('/cursos', [CursoController::class], 'index');
 
         Route::post('/registrar', [AuthController::class, 'register']);
     }
