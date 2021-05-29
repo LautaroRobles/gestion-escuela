@@ -26,6 +26,8 @@ class CreateDomiciliosTable extends Migration
             $table->string('distrito')->default('');
             $table->string('localidad')->default('');
             $table->string('codigo_postal')->default('');
+            $table->foreignId('alumno_id')->nullable();
+            $table->foreignId('responsable_legal_id')->nullable();
             $table->timestamps();
         });
     }

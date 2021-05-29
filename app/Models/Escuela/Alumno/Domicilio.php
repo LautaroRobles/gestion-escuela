@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Domicilio extends Model
 {
     use HasFactory;
+
+    function alumno()
+    {
+        return $this->belongsTo(Alumno::class);
+    }
+
+    function responsableLegal()
+    {
+        return $this->belongsTo(ResponsableLegal::class);
+    }
 }

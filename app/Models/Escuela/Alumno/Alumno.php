@@ -2,12 +2,19 @@
 
 namespace App\Models\Escuela\Alumno;
 
+use App\Models\Escuela\Curso;
+use App\Models\Escuela\Establecimiento;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Alumno extends Model
 {
     use HasFactory;
+
+    public function establecimiento()
+    {
+        return $this->belongsTo(Establecimiento::class);
+    }
 
     public function curso()
     {

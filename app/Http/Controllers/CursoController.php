@@ -13,7 +13,10 @@ class CursoController extends Controller
             'establecimiento_id' => 'required|int'
         ]);
 
-        return Curso::with('alumnos')
-            ->where('establecimiento_id', $fields['establecimiento_id']);
+        return Curso
+            ::where('establecimiento_id', $fields['establecimiento_id'])
+            ->orderBy('grado')
+            ->orderBy('division')
+            ->get();
     }
 }

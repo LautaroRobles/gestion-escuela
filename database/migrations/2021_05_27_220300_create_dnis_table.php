@@ -19,6 +19,8 @@ class CreateDnisTable extends Migration
             $table->string('nro_documento');
             $table->enum('posesion', ['Posee', 'En Tramite', 'No Posee'])->default('Posee');
             $table->enum('estado_documento', ['Bueno', 'Malo'])->default('Bueno');
+            $table->foreignId('alumno_id')->nullable();
+            $table->foreignId('responsable_legal_id')->nullable();
             $table->timestamps();
         });
     }

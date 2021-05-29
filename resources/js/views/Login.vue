@@ -79,6 +79,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import RequestHelper from '@/utils/RequestHelper'
 
 export default {
@@ -136,6 +137,8 @@ export default {
 
                         this.$store.commit('user', user);
                         this.$store.commit('establecimiento', establecimiento);
+
+                        axios.defaults.headers.common['Authorization'] = `Bearer ${user.token}`;
 
                         this.$router.push({name: "home"});
                     },

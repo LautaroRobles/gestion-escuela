@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Escuela\Alumno\Alumno;
+use App\Models\Escuela\Alumno\Dni;
+use App\Models\Escuela\Alumno\Domicilio;
 use App\Models\Escuela\Alumno\ResponsableLegal;
 use App\Models\Escuela\Alumno\Telefono;
 use App\Models\Escuela\Curso;
@@ -23,25 +25,21 @@ class DatabaseSeeder extends Seeder
             'nombre' => 'EP N°23 "RICARDO GÜIRALDES"'
         ]);
 
-        Alumno::factory()->count(21)
-            ->has(Telefono::factory())
-            ->has(ResponsableLegal::factory())
-            ->create([
-            'curso_id' => Curso::factory()
+        for($i = 0; $i < 3; $i++) {
+            Alumno::factory()->count(36)
+                ->has(Telefono::factory())
+                ->has(ResponsableLegal::factory())
+                ->has(Dni::factory())
+                ->has(Domicilio::factory())
                 ->create([
-                'establecimiento_id' => $ep23->id
-            ])
-        ]);
+                    'curso_id' => Curso::factory()
+                        ->create([
+                            'establecimiento_id' => $ep23->id
+                        ])
+                ]);
+        }
 
-        Alumno::factory()->count(23)
-            ->has(Telefono::factory())
-            ->has(ResponsableLegal::factory())
-            ->create([
-            'curso_id' => Curso::factory()
-                ->create([
-                'establecimiento_id' => $ep23->id
-            ])
-        ]);
+
 
         User::factory()->create([
             'username' => 'andrea',

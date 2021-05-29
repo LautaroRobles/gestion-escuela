@@ -18,7 +18,7 @@ class CreateTelefonosTable extends Migration
             $table->string('descripcion')->default('');
             $table->string('telefono');
             $table->foreignId('alumno_id')->nullable();
-            $table->foreignId('responsable_id')->nullable();
+            $table->foreignId('responsable_legal_id')->nullable();
             $table->timestamps();
         });
     }

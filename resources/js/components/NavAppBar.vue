@@ -1,16 +1,19 @@
 <template>
     <div>
+        <!--
         <v-navigation-drawer
             v-model="drawer"
             app
         >
-            <!-- Continuar -->
+
         </v-navigation-drawer>
+        -->
 
         <v-app-bar
             app
             :dark="!!color"
-            :color="color + ' darken-3'"
+            :color="color"
+            class="colored-app-bar"
         >
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
             <v-toolbar-title>{{ title }}</v-toolbar-title>
@@ -36,3 +39,9 @@
         }
     }
 </script>
+
+<style>
+    .colored-app-bar {
+        filter: saturate(75%);
+    }
+</style>
