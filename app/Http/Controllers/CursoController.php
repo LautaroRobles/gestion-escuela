@@ -9,12 +9,10 @@ class CursoController extends Controller
 {
     public function index(Request $request)
     {
-        $fields = $request->validate([
-            'establecimiento_id' => 'required|int'
-        ]);
+        $user = $request->user();
 
         return Curso
-            ::where('establecimiento_id', $fields['establecimiento_id'])
+            ::where('establecimiento_id', $user->establecimiento_id)
             ->orderBy('grado')
             ->orderBy('division')
             ->get();

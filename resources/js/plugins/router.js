@@ -3,12 +3,13 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-import Navigation from '@/components/NavAppBar'
-import Home from '@/views/Home'
-import Login from '@/views/Login'
-import Alumnos from '@/views/Alumnos'
+import Navigation from '../components/NavAppBar'
+import Home from '../views/Home'
+import Login from '../views/Login'
+import Alumnos from '../views/Alumnos/Alumnos'
+import MatricularAlumno from "../views/Alumnos/MatricularAlumno";
 
-import store from '@/plugins/vuex'
+import store from '../plugins/vuex'
 import axios from 'axios'
 
 const router = new VueRouter({
@@ -34,6 +35,18 @@ const router = new VueRouter({
             },
             meta: {
                 display_name: 'Alumnos',
+                color: 'orange darken-3'
+            }
+        },
+        {
+            path: '/alumnos/matricular',
+            name: 'matricular-alumno',
+            components: {
+                view: MatricularAlumno,
+                navigation: Navigation
+            },
+            meta: {
+                display_name: 'Matricular Alumno',
                 color: 'orange darken-3'
             }
         },

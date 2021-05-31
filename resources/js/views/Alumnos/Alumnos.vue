@@ -16,7 +16,7 @@
                                 text
                                 dense
                                 type="submit"
-                                color="orange darken-3"
+                                :color="theme_color"
                                 class="mr-n4"
                             >
                                 <v-icon left>mdi-reload</v-icon>
@@ -60,6 +60,16 @@
                             label="Tiene hermanos"
                         ></v-checkbox>
                     </v-form>
+                </v-card>
+                <v-card class="mt-4">
+                    <v-card-actions>
+                        <v-btn
+                            :to="{name: 'matricular-alumno'}"
+                            :color="theme_color"
+                        >
+                            Matricular alumno
+                        </v-btn>
+                    </v-card-actions>
                 </v-card>
             </v-col>
             <v-col>
@@ -155,6 +165,12 @@ export default {
                 }
             });
         },
+        getEstados() {
+            // TODO get estados from DB
+        },
+        mapEstados(estados) {
+
+        },
         getCursos() {
             this.loading.cursos = true;
 
@@ -192,6 +208,9 @@ export default {
             });
 
             return alumnos;
+        },
+        theme_color() {
+            return this.$route.meta.color || "primary";
         }
     },
     created() {

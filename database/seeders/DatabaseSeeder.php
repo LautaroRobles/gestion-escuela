@@ -25,21 +25,17 @@ class DatabaseSeeder extends Seeder
             'nombre' => 'EP N°23 "RICARDO GÜIRALDES"'
         ]);
 
-        for($i = 0; $i < 3; $i++) {
-            Alumno::factory()->count(36)
-                ->has(Telefono::factory())
-                ->has(ResponsableLegal::factory())
-                ->has(Dni::factory())
-                ->has(Domicilio::factory())
-                ->create([
-                    'curso_id' => Curso::factory()
-                        ->create([
-                            'establecimiento_id' => $ep23->id
-                        ])
-                ]);
-        }
-
-
+        Alumno::factory()->count(36)
+            ->has(Telefono::factory())
+            ->has(ResponsableLegal::factory())
+            ->has(Dni::factory())
+            ->has(Domicilio::factory())
+            ->create([
+                'curso_id' => Curso::factory()
+                    ->create([
+                        'establecimiento_id' => $ep23->id
+                    ])
+            ]);
 
         User::factory()->create([
             'username' => 'andrea',

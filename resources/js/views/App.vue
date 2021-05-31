@@ -5,7 +5,9 @@
         <!-- Sizes your content based upon application components -->
         <v-main>
             <!-- Provides the application the proper gutter -->
-            <router-view name="view"></router-view>
+            <v-slide-x-transition mode="out-in">
+                <router-view name="view"></router-view>
+            </v-slide-x-transition>
         </v-main>
 
         <v-footer app>

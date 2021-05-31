@@ -11,6 +11,7 @@ class Alumno extends Model
 {
     use HasFactory;
 
+    //TODO corregir establecimiento
     public function establecimiento()
     {
         return $this->belongsTo(Establecimiento::class);
@@ -41,9 +42,16 @@ class Alumno extends Model
         return $this->hasMany(HistorialLectivo::class);
     }
 
-    public function responsableLegal()
+    public function responsableLegals()
     {
         return $this->belongsToMany(ResponsableLegal::class);
     }
+
+    public function autorizadoRetirars()
+    {
+        return $this->hasMany(AutorizadoRetirar::class);
+    }
+
+    //TODO agregar los datos de salud, relacion entre hermanos
 
 }

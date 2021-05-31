@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->group(
         Route::get('/alumnos', [AlumnoController::class, 'index']);
         Route::post('/alumnos', [AlumnoController::class, 'store']);
         Route::get('/alumnos/count', [AlumnoController::class, 'count']);
+        Route::get('/alumnos/{id}', [AlumnoController::class, 'show']);
 
         Route::get('/cursos', [CursoController::class, 'index']);
 
