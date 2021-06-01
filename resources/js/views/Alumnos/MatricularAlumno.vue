@@ -172,47 +172,104 @@
                         </v-card-text>
                     </v-card>
                 </v-col>
-                <v-col class="col-12 col-sm-6">
+            </v-row>
+            <v-row>
+                <v-col>
+                    <v-card>
+                        <v-expansion-panels flat>
+                            <v-expansion-panel>
+                                <v-expansion-panel-header>Otros datos de domicilio</v-expansion-panel-header>
+                                <v-expansion-panel-content>
+                                    <v-row>
+                                        <v-col class="col-4">
+                                            <v-text-field
+                                                outlined
+                                                dense
+                                                label="Piso"
+                                            ></v-text-field>
+                                        </v-col>
+                                        <v-col class="col-4">
+                                            <v-text-field
+                                                outlined
+                                                dense
+                                                label="Torre"
+                                            ></v-text-field>
+                                        </v-col>
+                                        <v-col class="col-4">
+                                            <v-text-field
+                                                outlined
+                                                dense
+                                                label="Departamento"
+                                            ></v-text-field>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col class="col-12 col-sm-6">
+                                            <v-text-field
+                                                outlined
+                                                dense
+                                                label="Entre calles"
+                                            ></v-text-field>
+                                        </v-col>
+                                        <v-col>
+                                            <v-text-field
+                                                outlined
+                                                dense
+                                                label="Otro dato referido a domicilio"
+                                            ></v-text-field>
+                                        </v-col>
+                                    </v-row>
+                                </v-expansion-panel-content>
+                            </v-expansion-panel>
+                        </v-expansion-panels>
+                    </v-card>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col>
                     <v-card>
                         <v-card-text>
-                            <p>Otros datos de domicilio</p>
+                            <p>Teléfonos</p>
                             <v-row>
-                                <v-col class="col-4">
-                                    <v-text-field
-                                        outlined
-                                        dense
-                                        label="Piso"
-                                    ></v-text-field>
-                                </v-col>
-                                <v-col class="col-4">
-                                    <v-text-field
-                                        outlined
-                                        dense
-                                        label="Torre"
-                                    ></v-text-field>
-                                </v-col>
-                                <v-col class="col-4">
-                                    <v-text-field
-                                        outlined
-                                        dense
-                                        label="Departamento"
-                                    ></v-text-field>
-                                </v-col>
-                            </v-row>
-                            <v-row>
-                                <v-col class="col-12 col-sm-6">
-                                    <v-text-field
-                                        outlined
-                                        dense
-                                        label="Entre calles"
-                                    ></v-text-field>
-                                </v-col>
                                 <v-col>
-                                    <v-text-field
-                                        outlined
-                                        dense
-                                        label="Otro dato referido a domicilio"
-                                    ></v-text-field>
+                                    <!-- Acá van los telefonos -->
+                                    <template v-for="(telefono, index) in alumno.telefonos">
+                                        <div class="d-flex">
+                                            <v-text-field
+                                                class="rounded-0 rounded-l-pill col-4"
+                                                dense
+                                                outlined
+                                                label="Teléfono"
+                                                v-model="telefono.telefono"
+                                            ></v-text-field>
+                                            <v-text-field
+                                                class="rounded-0"
+                                                dense
+                                                outlined
+                                                label="Descrición"
+                                                v-model="telefono.descripcion"
+                                            ></v-text-field>
+                                            <v-btn
+                                                class="rounded-0 rounded-r-pill fill-height"
+                                                style="height: 40px"
+                                                :color="theme_color"
+                                                outlined
+                                                @click="alumno.telefonos.splice(index, 1)"
+                                            >
+                                                <v-icon>mdi-delete</v-icon>
+                                            </v-btn>
+                                        </div>
+                                    </template>
+                                </v-col>
+                                <v-col class="col-12 col-sm-4 col-md-3">
+                                    <v-btn
+                                        :color="theme_color"
+                                        block
+                                        @click="alumno.telefonos.push({telefono: '', descripcion: ''})"
+                                    >
+                                        <v-icon left>mdi-plus</v-icon>
+                                        Agregar teléfono
+                                    </v-btn>
                                 </v-col>
                             </v-row>
                         </v-card-text>
@@ -249,7 +306,13 @@ export default {
                 fecha_de_nacimiento: null,
                 lugar_de_nacimiento: null,
                 nacionalidad: null,
-                domicilio: null
+                domicilio: null,
+                telefonos: [
+                    {
+                        telefono: "",
+                        descripcion: ""
+                    }
+                ],
             },
             select: {
                 sexos: ['M', 'F'],
