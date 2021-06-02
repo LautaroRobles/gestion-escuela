@@ -80,6 +80,16 @@
                         :loading="loading.alumnos"
                         :search="filtros.buscar"
                     >
+                        <template v-slot:item.acciones="{ item }">
+                            <v-btn
+                                :color="theme_color"
+                                text
+                                :to="`/alumnos/${item.id}`"
+                            >
+                                más info
+                                <v-icon right>mdi-chevron-right</v-icon>
+                            </v-btn>
+                        </template>
                     </v-data-table>
                     <v-overlay
                         :value="loading.alumnos"
@@ -96,7 +106,7 @@
 </template>
 
 <script>
-import RequestHelper from "@/utils/RequestHelper";
+import RequestHelper from "../../utils/RequestHelper";
 
 export default {
     data () {
@@ -120,7 +130,7 @@ export default {
                     {text: "Apellidos y Nombres", value: "ape_nom"},
                     {text: "Dni", value: "dni", align: "center"},
                     {text: "Domicilio", value: "domicilio"},
-                    {text: "Acciones", value: "acciones"}
+                    {text: "", value: "acciones", sortable: false}
                 ],
                 alumnos: [
 
@@ -138,9 +148,10 @@ export default {
             this.loading.alumnos = true;
 
             var request = {
-                url: `/api/alumnos?establecimiento_id=${this.establecimiento.id}`,
+                url: `/api/alumnos`,
                 handler: {
                     "200": (response) => {
+                        console.log(response.data);
                         this.tabla.alumnos = this.mapAlumnos(response.data);
                     },
                     "401": (response) => {
@@ -158,6 +169,7 @@ export default {
         mapAlumnos(alumnos) {
             return alumnos.map(alumno => {
                 return {
+                    id: alumno.id,
                     curso: `${alumno.curso.grado}°${alumno.curso.division}`,
                     ape_nom: `${alumno.apellidos}, ${alumno.nombres}`,
                     dni: `${alumno.dni.nro_documento}`,
@@ -175,7 +187,7 @@ export default {
             this.loading.cursos = true;
 
             var request = {
-                url: `/api/cursos?establecimiento_id=${this.establecimiento.id}`,
+                url: `/api/cursos`,
                 handler: {
                     "200": (response) => {
                         this.cursos_disponibles = this.mapCursos(response.data);
@@ -199,9 +211,6 @@ export default {
         }
     },
     computed: {
-        establecimiento() {
-            return this.$store.state.establecimiento
-        },
         alumnos_filtrados() {
             var alumnos = this.tabla.alumnos.filter(alumno => {
                 return !this.filtros.cursos.length || this.filtros.cursos.includes(alumno.curso)

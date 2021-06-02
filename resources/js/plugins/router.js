@@ -11,6 +11,7 @@ import MatricularAlumno from "../views/Alumnos/MatricularAlumno";
 
 import store from '../plugins/vuex'
 import axios from 'axios'
+import VisualizarAlumno from "../views/Alumnos/VisualizarAlumno";
 
 const router = new VueRouter({
     mode: 'history',
@@ -47,6 +48,18 @@ const router = new VueRouter({
             },
             meta: {
                 display_name: 'Matricular Alumno',
+                color: 'orange darken-3'
+            }
+        },
+        {
+            path: '/alumnos/:id',
+            name: 'alumno',
+            components: {
+                view: VisualizarAlumno,
+                navigation: Navigation
+            },
+            meta: {
+                display_name: 'Visualizar un alumno',
                 color: 'orange darken-3'
             }
         },

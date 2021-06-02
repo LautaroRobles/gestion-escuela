@@ -76,7 +76,7 @@
 </template>
 
 <script>
-import RequestHelper from "@/utils/RequestHelper";
+import RequestHelper from "../utils/RequestHelper";
 
 export default {
     data() {
@@ -105,7 +105,7 @@ export default {
             this.loading.alumnos = true;
 
             var request = {
-                url: `/api/alumnos/count?establecimiento_id=${this.establecimiento.id}`,
+                url: `/api/alumnos/count`,
                 handler: {
                     "200": (response) => {
                         this.alumnos.count = response.data;

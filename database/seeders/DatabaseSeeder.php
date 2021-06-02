@@ -25,16 +25,38 @@ class DatabaseSeeder extends Seeder
             'nombre' => 'EP N°23 "RICARDO GÜIRALDES"'
         ]);
 
-        Alumno::factory()->count(36)
+        $curso1A = Curso::factory()->create([
+            'grado' => '1',
+            'division' => 'A',
+            'establecimiento_id' => $ep23->id
+        ]);
+
+        $curso2A = Curso::factory()->create([
+            'grado' => '2',
+            'division' => 'A',
+            'establecimiento_id' => $ep23->id
+        ]);
+
+        Alumno::factory()
+            ->has(Telefono::factory()->count(3))
+            ->has(ResponsableLegal::factory()->count(2))
+            ->has(Dni::factory())
+            ->has(Domicilio::factory())
+            ->create([
+                'curso_id' => $curso1A->id,
+                'apellidos' => 'Robles',
+                'nombres' => 'Lautaro Oscar'
+            ]);
+
+        Alumno::factory()
             ->has(Telefono::factory())
             ->has(ResponsableLegal::factory())
             ->has(Dni::factory())
             ->has(Domicilio::factory())
             ->create([
-                'curso_id' => Curso::factory()
-                    ->create([
-                        'establecimiento_id' => $ep23->id
-                    ])
+                'curso_id' => $curso2A->id,
+                'apellidos' => 'Fernandez',
+                'nombres' => 'Pablo'
             ]);
 
         User::factory()->create([

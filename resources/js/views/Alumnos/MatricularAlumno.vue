@@ -170,12 +170,6 @@
                                 </v-col>
                             </v-row>
                         </v-card-text>
-                    </v-card>
-                </v-col>
-            </v-row>
-            <v-row>
-                <v-col>
-                    <v-card>
                         <v-expansion-panels flat>
                             <v-expansion-panel>
                                 <v-expansion-panel-header>Otros datos de domicilio</v-expansion-panel-header>
@@ -260,11 +254,10 @@
                                             </v-btn>
                                         </div>
                                     </template>
-                                </v-col>
-                                <v-col class="col-12 col-sm-4 col-md-3">
                                     <v-btn
                                         :color="theme_color"
                                         block
+                                        text
                                         @click="alumno.telefonos.push({telefono: '', descripcion: ''})"
                                     >
                                         <v-icon left>mdi-plus</v-icon>
@@ -273,6 +266,228 @@
                                 </v-col>
                             </v-row>
                         </v-card-text>
+                    </v-card>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col class="col-12 col-md-3">
+                    <v-card>
+                        <v-card-text>
+                            <p>Responsables</p>
+                            <v-btn
+                                :color="theme_color"
+                                text
+                                block
+                            >
+                                <v-icon left>mdi-plus</v-icon>
+                                Agregar responsable
+                            </v-btn>
+                        </v-card-text>
+                    </v-card>
+                </v-col>
+                <v-col>
+                    <v-card>
+                        <v-card-text>
+                            <v-select
+                                single-line
+                                flat
+                                class="pt-0"
+                                prefix="Datos del "
+                                label="Responsable"
+                                :items="['Madre', 'Padre', 'Tutor']"
+                            ></v-select>
+                            <v-row>
+                                <v-col>
+                                    <v-text-field
+                                        outlined
+                                        dense
+                                        label="Apellidos"
+                                    ></v-text-field>
+                                </v-col>
+                                <v-col>
+                                    <v-text-field
+                                        outlined
+                                        dense
+                                        label="Nombres"
+                                    ></v-text-field>
+                                </v-col>
+                            </v-row>
+                            <p>Educación</p>
+                            <v-row align="center" class="mb-4">
+                                <v-col>
+                                    <v-select
+                                        dense
+                                        outlined
+                                        hide-details
+                                        label="Nivel más alto que cursó"
+                                        :items="['Ninguno', 'Primario', 'Secundario', 'Terciario', 'Universitario']"
+                                    ></v-select>
+                                </v-col>
+                                <v-col>
+                                    <div class="d-flex align-center">
+                                        <div class="mr-4">¿Finalizó?</div>
+                                        <v-radio-group
+                                            dense
+                                            row
+                                            hide-details
+                                            class="ma-0"
+                                        >
+                                            <v-radio
+                                                label="Si"
+                                            ></v-radio>
+                                            <v-radio
+                                                label="No"
+                                            ></v-radio>
+                                        </v-radio-group>
+                                    </div>
+                                </v-col>
+                            </v-row>
+                            <p>Vive</p>
+                            <v-radio-group
+                                dense
+                                row
+                            >
+                                <v-radio
+                                    label="Si"
+                                ></v-radio>
+                                <v-radio
+                                    label="No"
+                                ></v-radio>
+                            </v-radio-group>
+                            <p>Documento</p>
+                            <v-row>
+                                <v-col class="col-6 col-sm-3 col-md-2">
+                                    <v-select
+                                        outlined
+                                        dense
+                                        label="Tipo"
+                                        :items="select.tipos_documento"
+                                        :value="select.tipos_documento[0]"
+                                    ></v-select>
+                                </v-col>
+                                <v-col class="col-6 col-sm-5 col-md-6">
+                                    <v-text-field
+                                        outlined
+                                        dense
+                                        label="Número"
+                                        :rules="[...rules.obligatorio, ...rules.numerico, ...rules.longitud8]"
+                                    ></v-text-field>
+                                </v-col>
+                                <v-col>
+                                    <v-select
+                                        outlined
+                                        dense
+                                        label="Posee"
+                                        :items="select.posesion_documento"
+                                        :value="select.posesion_documento[0]"
+                                    ></v-select>
+                                </v-col>
+                                <v-col>
+                                    <v-select
+                                        outlined
+                                        dense
+                                        label="Estado"
+                                        :items="select.estado_documento"
+                                        :value="select.estado_documento[0]"
+                                    ></v-select>
+                                </v-col>
+                            </v-row>
+                            <p>Domicilio</p>
+                            <v-row>
+                                <v-col>
+                                    <v-text-field
+                                        outlined
+                                        dense
+                                        label="Calle"
+                                        :rules="rules.obligatorio"
+                                    ></v-text-field>
+                                </v-col>
+                                <v-col class="col-4">
+                                    <v-text-field
+                                        outlined
+                                        dense
+                                        label="Numero"
+                                        :rules="rules.numerico"
+                                    ></v-text-field>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col class="col-6 col-sm-3">
+                                    <v-text-field
+                                        outlined
+                                        dense
+                                        label="Provincia"
+                                    ></v-text-field>
+                                </v-col>
+                                <v-col>
+                                    <v-text-field
+                                        outlined
+                                        dense
+                                        label="Distrito"
+                                    ></v-text-field>
+                                </v-col>
+                                <v-col class="col-6 col-sm-3">
+                                    <v-text-field
+                                        outlined
+                                        dense
+                                        label="Localidad"
+                                    ></v-text-field>
+                                </v-col>
+                                <v-col>
+                                    <v-text-field
+                                        outlined
+                                        dense
+                                        label="Código Postal"
+                                    ></v-text-field>
+                                </v-col>
+                            </v-row>
+                        </v-card-text>
+                        <v-expansion-panels flat>
+                            <v-expansion-panel>
+                                <v-expansion-panel-header>Otros datos de domicilio</v-expansion-panel-header>
+                                <v-expansion-panel-content>
+                                    <v-row>
+                                        <v-col class="col-4">
+                                            <v-text-field
+                                                outlined
+                                                dense
+                                                label="Piso"
+                                            ></v-text-field>
+                                        </v-col>
+                                        <v-col class="col-4">
+                                            <v-text-field
+                                                outlined
+                                                dense
+                                                label="Torre"
+                                            ></v-text-field>
+                                        </v-col>
+                                        <v-col class="col-4">
+                                            <v-text-field
+                                                outlined
+                                                dense
+                                                label="Departamento"
+                                            ></v-text-field>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col class="col-12 col-sm-6">
+                                            <v-text-field
+                                                outlined
+                                                dense
+                                                label="Entre calles"
+                                            ></v-text-field>
+                                        </v-col>
+                                        <v-col>
+                                            <v-text-field
+                                                outlined
+                                                dense
+                                                label="Otro dato referido a domicilio"
+                                            ></v-text-field>
+                                        </v-col>
+                                    </v-row>
+                                </v-expansion-panel-content>
+                            </v-expansion-panel>
+                        </v-expansion-panels>
                     </v-card>
                 </v-col>
             </v-row>
@@ -366,5 +581,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>
